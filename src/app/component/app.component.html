@@ -1,0 +1,51 @@
+<section id="log" *ngIf="flaglog">
+  <div id="login">
+    <h2>LogIn</h2>
+    <input type="text" placeholder="Username" [(ngModel)]="login.username">
+    <input type="text" placeholder="Password" [(ngModel)]="login.password">
+    <button id="buttlog" (click)="LogIn()">Login</button>
+  </div>
+  <div id="register">
+    <h2>SignIn</h2> 
+    <input type="text" placeholder="Username" [(ngModel)]="signin.username">
+    <input type="text" placeholder="Password" [(ngModel)]="signin.password">
+    <button id="buttreg" (click)="SignIn()">Register</button>
+  </div>
+  <div id="h1"><div>Become a Hero and save the world by killing Monster</div></div>
+</section>
+<section id="classic" *ngIf="flagplayer">
+  <div id="Combat">
+    <div id="Terrain">
+      <div id="Monster" (click)="hit()">
+
+      </div>
+    </div>
+    <div id="team">
+      <div id="Hero">
+        <div id="img">
+          image
+        </div>
+        <div id="stat">
+          <p>Gold</p>
+          <p>Power</p>
+        </div>
+      </div>
+      <div id="Friend">
+        Compagnion
+      </div>
+    </div>
+  </div>
+  <div id="Menu">
+    <div id="pannel" >
+      <div id="selected" *ngIf="display" [@flyInOut]="'in'">
+        <app-menu [menuchoice]="menuchoice" [player]="player"></app-menu>
+      </div>
+    </div>
+    <div id="sidemenu">
+      <div id="side1" (click)="menuchoice='hero'" (click)="choiceMenu('hero')">Hero</div>
+      <div id="side2" (click)="menuchoice='team'" (click)="choiceMenu('team')">Team</div>
+      <div id="side3" (click)="menuchoice='object'" (click)="choiceMenu('object')">Object</div>
+      <div id="side4" (click)="menuchoice='option'" (click)="choiceMenu('option')">Option</div>
+    </div>
+  </div>
+</section> 
