@@ -85,9 +85,10 @@ CREATE TABLE `monster` (
   `name` varchar(255) NOT NULL,
   `hp` int(255) NOT NULL,
   `exp` int(255) NOT NULL,
+  `gold` int(255) NOT NULL,
   `picture` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +97,7 @@ CREATE TABLE `monster` (
 
 LOCK TABLES `monster` WRITE;
 /*!40000 ALTER TABLE `monster` DISABLE KEYS */;
-INSERT INTO `monster` VALUES (1,'Blop le gluant',15,1,'blop.png');
+INSERT INTO `monster` VALUES (1,'Tofu Royal',15,1,5,'TofuRoyal.png'),(2,'Bouftou Royal',30,15,8,'bouftouroyal.png'),(3,'Dragon Cochon',100,30,60,'dragoncochon.png'),(4,'Sphincter Cell',50,1,1,'sphinctercell.png');
 /*!40000 ALTER TABLE `monster` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,7 +184,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'ryumad','azertyuiop',1,0,0,1,'hero.png'),(3,'ryumade','azertyuiop',1,0,0,1,'');
+INSERT INTO `user` VALUES (1,'ryumad','azertyuiop',241,646800,969628,1,'hero.png'),(3,'ryumade','azertyuiop',1,0,0,1,'');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -196,4 +197,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-13 16:46:41
+-- Dump completed on 2017-11-14 17:08:55
