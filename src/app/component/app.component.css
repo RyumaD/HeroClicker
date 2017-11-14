@@ -22,12 +22,15 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+    cursor: url("../../assets/sword.png"), pointer;
 }
 #Monster{
     height: 100%;
-    background-image: url("../../assets/TofuRoyal.png");
     background-position: center center;
     background-repeat: no-repeat;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
 }
 #team{
     background-color: green;
@@ -35,7 +38,8 @@
 }
 #Hero{
     background-color: goldenrod;
-    height: 50%;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -57,16 +61,44 @@ p{
 }
 #pannel{
     height: 70%;
-    background-color: orchid;
+    background-image: url("../../assets/cote.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 #sidemenu div{
-    background-color: blue;
     width: 50%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#sidemenu div div{
+    text-align: center;
+    width: 50%;
+    position: relative;
+    top: 40%;
+    left: 25%;
+    background-color: rgba(255, 255, 255, 0.527)
+}
+#side1{
+    background-image: url("../../assets/hero.jpg");
+}
+#side2{
+    background-image: url("../../assets/team.jpg");
+}
+#side3{
+    background-image: url("../../assets/shop.jpg");
+}
+#side4{
+    background-image: url("../../assets/option.jpg");
 }
 #selected{
     position: relative;
     z-index: 1;
-    background-color: orangered;
+    background-image: url("../../assets/panel.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 100%;
 }
 .obj{
@@ -79,6 +111,9 @@ p{
     margin: 5px;
     background-color: whitesmoke;
 }
+.buy{
+    background-color: yellow;  
+}
 #log{
     width: 100%;
     height: 100%;
@@ -86,7 +121,7 @@ p{
     justify-content: space-around;
     flex-wrap: wrap;
     background-color: black;
-    background-image: url("../../assets/bcklog.jpg");
+    background-image: url("../../assets/bcklog.png");
     background-position: center center;
     background-repeat: no-repeat;
 }
@@ -122,4 +157,60 @@ p{
     position: relative;
     left: 25%;
     background-color: rgba(245, 245, 245, 0.836); 
+}
+#lifeBar{
+    width: 50%;
+    height: 5%;
+    border: 3px solid black;
+    background-color: rgba(245, 245, 245, 0.836);
+    position: relative;
+    left: 24%;
+}
+#progressBar{
+    background-color: red;
+    height: 100%;
+    
+}
+#hp{
+    border: 3px solid black;
+    color: black;
+    background-color: rgba(245, 245, 245, 0.836); 
+    position: relative;
+    width: 50%;
+    left: 24%;
+}
+#statG{
+    background-image: url("../../assets/gold.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 50%;
+}
+#statP{
+    background-image: url("../../assets/power.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 50%;
+    height: 100%;
+}
+
+#statP div, #statG div{
+    width: 50%;
+    position: relative;
+    left: 25%;
+    top: 50%;
+    color: black;
+    background-color: rgba(245, 245, 245, 0.849);
+}
+.animate {
+    transform: scale(0.9);
+}
+#heromenu{
+    border: 3px solid black;
+
+    background-color: whitesmoke;
+}
+#heromenu p{
+    margin: 10px;
 }

@@ -3,7 +3,7 @@
     <h2>LogIn</h2>
     <input type="text" placeholder="Username" [(ngModel)]="login.username">
     <input type="text" placeholder="Password" [(ngModel)]="login.password">
-    <button id="buttlog" (click)="LogIn()">Login</button>
+    <button id="buttlog" (click)="LogIn()" (click)="RandomMonsterById()">Login</button>
   </div>
   <div id="register">
     <h2>SignIn</h2> 
@@ -16,36 +16,28 @@
 <section id="classic" *ngIf="flagplayer">
   <div id="Combat">
     <div id="Terrain">
-      <div id="Monster" (click)="hit()">
-
-      </div>
+        <div id="lifeBar" *ngIf="flaglifebar"><div id="progressBar"></div></div>
+        <div id="hp" *ngIf="flaglifebar">{{monster.name}} | {{hp}}/{{monster.getHp()}} | Level : {{player.level}}</div>
+      <div id="Monster" (click)="hit(player.power)"></div>
     </div>
     <div id="team">
       <div id="Hero">
-        <div id="img">
-          image
-        </div>
-        <div id="stat">
-          <p>Gold</p>
-          <p>Power</p>
-        </div>
-      </div>
-      <div id="Friend">
-        Compagnion
+        <div id="statG"><div><h4>Gold</h4><p>{{player.getGold()}}</p></div></div>
+        <div id="statP"><div><h4>Power</h4><p>{{player.getPower()}}</p></div></div>
       </div>
     </div>
   </div>
   <div id="Menu">
     <div id="pannel" >
       <div id="selected" *ngIf="display" [@flyInOut]="'in'">
-        <app-menu [menuchoice]="menuchoice" [player]="player"></app-menu>
+        <app-menu [menuchoice]="menuchoice" [player]="player" [monster]="monster"></app-menu>
       </div>
     </div>
     <div id="sidemenu">
-      <div id="side1" (click)="menuchoice='hero'" (click)="choiceMenu('hero')">Hero</div>
-      <div id="side2" (click)="menuchoice='team'" (click)="choiceMenu('team')">Team</div>
-      <div id="side3" (click)="menuchoice='object'" (click)="choiceMenu('object')">Object</div>
-      <div id="side4" (click)="menuchoice='option'" (click)="choiceMenu('option')">Option</div>
+      <div id="side1" (click)="menuchoice='hero'" (click)="choiceMenu('hero')"><div>HERO</div></div>
+      <div id="side2" (click)="menuchoice='team'" (click)="choiceMenu('team')"><div>TEAM</div></div>
+      <div id="side3" (click)="menuchoice='object'" (click)="choiceMenu('object')"><div>OBJECT</div></div>
+      <div id="side4" (click)="menuchoice='option'" (click)="choiceMenu('option')"><div>OPTION</div></div>
     </div>
   </div>
 </section> 

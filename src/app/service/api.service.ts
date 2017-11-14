@@ -41,9 +41,10 @@ export class ApiService {
         let body = JSON.stringify(userapi);
         return this.http.post(this.url+'signin',body).toPromise();
     }
-    goldUser(id:number, gold): Promise<any>{
-        const body = {gold: gold};
-        return this.http.post(this.url+'usergold/'+id,body).toPromise();
+    getUserById(user:User): Promise<any>{
+        let userapi= {id: user.getId()}
+        let body = JSON.stringify(userapi);
+        return this.http.post(this.url+'userid',body).toPromise();
     }
     getMyObjectById(id){
         let ids= {id : id}
@@ -54,5 +55,41 @@ export class ApiService {
         let ids= {id : id}
         let body = JSON.stringify(ids);
         return this.http.post(this.url+'myfriends',body).toPromise();
+    }
+    getMonsterById(id){
+        return this.http.get(this.url+'monster/'+id).toPromise();
+    }
+    getAllMonster(){
+        return this.http.get(this.url+'monsters').toPromise();
+    }
+    userExp(exp, id){
+        let ids= {exp : exp, id : id}
+        let body = JSON.stringify(ids);
+        return this.http.post(this.url+'userexp',body,this.options).toPromise();
+    }
+    userGold(gold, id){
+        let ids= {gold : gold, id : id}
+        let body = JSON.stringify(ids);
+        return this.http.post(this.url+'usergold',body,this.options).toPromise();
+    }
+    userLevel(level, id){
+        let ids= {level : level, id : id}
+        let body = JSON.stringify(ids);
+        return this.http.post(this.url+'userlevel',body,this.options).toPromise();
+    }
+    objectLevel(level, id){
+        let ids= {level : level, id : id}
+        let body = JSON.stringify(ids);
+        return this.http.post(this.url+'objectlevel',body,this.options).toPromise();
+    }
+    friendLevel(level, id){
+        let ids= {level : level, id : id}
+        let body = JSON.stringify(ids);
+        return this.http.post(this.url+'friendlevel',body,this.options).toPromise();
+    }
+    friendGold(gold, id){
+        let ids= {gold : gold, id : id}
+        let body = JSON.stringify(ids);
+        return this.http.post(this.url+'friendgold',body,this.options).toPromise();
     }
 }

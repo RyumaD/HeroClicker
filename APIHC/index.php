@@ -54,19 +54,41 @@ Flight::route("OPTIONS|POST /signin", function(){
     }
     echo json_encode( $status ); 
 });
-
-Flight::route("OPTIONS|PUT /userexp/@id", function($id){
+Flight::route("OPTIONS|POST /userid", function(){
+    $data = json_decode(file_get_contents("php://input"), true);
+    $id = $data['id'];
     $status = [
         "success" => false,
         "id" => 0
     ];
-    $exp = Flight::request()->data["exp"];
     $user = new User();
     $user->setId($id);
-    $user->setExp($gold);
     $bddManager = Flight::get("BddManager");
-    $repo = $bddManager->getuserRepository();
-    $result = $repo->Experience();
+    $repo = $bddManager->getUserRepository();
+    $id = $repo->getUserById( $user );
+    if( $id != 0 ){
+        $status["success"] = true;
+        $status["id"] = $id;
+    }
+    echo json_encode( $status ); 
+});
+Flight::route("OPTIONS /userexp", function(){
+    echo "{}";
+});
+Flight::route("PUT|POST /userexp", function(){
+    $status = [
+        "success" => false,
+        "id" => 0
+    ];
+    $data = json_decode(file_get_contents("php://input"), true);
+    $exp = $data['exp'];
+    $id = $data['id'];
+    $user = new User();
+    $user->setId($id);
+    $user->setExp($exp);
+    $bddManager = Flight::get("BddManager");
+    $repo = $bddManager->getUserRepository();
+    $result = $repo->Experience( $user );
     if( $result != 0 ){
         $status["success"] = true;
         $status["id"] = $result;
@@ -74,19 +96,23 @@ Flight::route("OPTIONS|PUT /userexp/@id", function($id){
     
     echo json_encode( $status ); 
 });
-
-Flight::route("OPTIONS|PUT /usergold/@id", function($id){
+Flight::route("OPTIONS /usergold", function(){
+    echo "{}";
+});
+Flight::route("PUT|POST /usergold", function(){
     $status = [
         "success" => false,
         "id" => 0
     ];
-    $gold = Flight::request()->data["gold"];
+    $data = json_decode(file_get_contents("php://input"), true);
+    $gold = $data['gold'];
+    $id = $data['id'];
     $user = new User();
     $user->setId($id);
     $user->setGold($gold);
     $bddManager = Flight::get("BddManager");
     $repo = $bddManager->getUserRepository();
-    $result = $repo->goldMaker();
+    $result = $repo->goldMaker($user);
     if( $result != 0 ){
         $status["success"] = true;
         $status["id"] = $result;
@@ -94,19 +120,23 @@ Flight::route("OPTIONS|PUT /usergold/@id", function($id){
     
     echo json_encode( $status ); 
 });
-
-Flight::route("OPTIONS|PUT /userlvl/@id", function($id){
+Flight::route("OPTIONS /userlevel", function(){
+    echo "{}";
+});
+Flight::route("PUT|POST /userlevel", function(){
     $status = [
         "success" => false,
         "id" => 0
     ];
-    $level = Flight::request()->data["level"];
+    $data = json_decode(file_get_contents("php://input"), true);
+    $level = $data['level'];
+    $id = $data['id'];
     $user = new user();
     $user->setId($id);
     $user->setLevel($level);
     $bddManager = Flight::get("BddManager");
     $repo = $bddManager->getUserRepository();
-    $result = $repo->levelUp();
+    $result = $repo->levelUp($user);
     if( $result != 0 ){
         $status["success"] = true;
         $status["id"] = $result;
@@ -169,12 +199,17 @@ Flight::route("OPTIONS|POST /myobjects", function(){
     echo json_encode( $status ); 
 });
 
-Flight::route("OPTIONS|POST /objectlvl/@id", function($id){
+Flight::route("OPTIONS /objectlevel", function(){
+    echo "{}";
+});
+Flight::route("PUT|POST /objectlevel", function(){
     $status = [
         "success" => false,
         "id" => 0
     ];
-    $level = Flight::request()->data["level"];
+    $data = json_decode(file_get_contents("php://input"), true);
+    $level = $data['level'];
+    $id = $data['id'];
     $obj = new Object();
     $obj->setId($id);
     $obj->setLevel($level);
@@ -243,18 +278,23 @@ Flight::route("OPTIONS|POST /myfriends", function(){
     echo json_encode( $status ); 
 });
 
-Flight::route("OPTIONS|POST /friendgold/@id", function($id){
+Flight::route("OPTIONS /friendgold", function(){
+    echo "{}";
+});
+Flight::route("PUT|POST /friendgold", function(){
     $status = [
         "success" => false,
         "id" => 0
     ];
-    $gold = Flight::request()->data["gold"];
+    $data = json_decode(file_get_contents("php://input"), true);
+    $gold = $data['gold'];
+    $id = $data['id'];
     $friend = new Friend();
     $friend->setId($id);
     $friend->setGold($gold);
     $bddManager = Flight::get("BddManager");
     $repo = $bddManager->getFriendRepository();
-    $result = $repo->goldMaker();
+    $result = $repo->goldMaker($friend);
     if( $result != 0 ){
         $status["success"] = true;
         $status["id"] = $result;
@@ -263,18 +303,23 @@ Flight::route("OPTIONS|POST /friendgold/@id", function($id){
     echo json_encode( $status ); 
 });
 
-Flight::route("OPTIONS|POST /friendlvl/@id", function($id){
+Flight::route("OPTIONS /friendlevel", function(){
+    echo "{}";
+});
+Flight::route("PUT|POST /friendlevel", function(){
     $status = [
         "success" => false,
         "id" => 0
     ];
-    $level = Flight::request()->data["level"];
+    $data = Flight::request()->data;
+    $level = $data['level'];
+    $id = $data['id'];
     $friend = new Friend();
     $friend->setId($id);
     $friend->setLevel($level);
     $bddManager = Flight::get("BddManager");
     $repo = $bddManager->getFriendRepository();
-    $result = $repo->levelUp();
+    $result = $repo->levelUp($friend);
     if( $result != 0 ){
         $status["success"] = true;
         $status["id"] = $result;

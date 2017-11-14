@@ -19,6 +19,22 @@ class UserRepository extends Repository {
         
     }
 
+    function getUserById( User $user ){
+        $query = "SELECT * FROM user WHERE id=:id";
+        $prep = $this->connection->prepare( $query );
+        $prep->execute([
+            "id" => $user->getId()
+        ]);
+        $result = $prep->fetch(PDO::FETCH_ASSOC);
+
+        if( empty( $result ) ){
+            return false;
+        }
+        else {
+            return $result;
+        }
+        
+    }
     function register( User $user ){
         $flag = $this->getUserByUsername($user);
         

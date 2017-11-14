@@ -1,25 +1,26 @@
 <div [ngSwitch]="menuchoice">
-    <div *ngSwitchCase="'hero'">Hero
-        {{player.username}}
-        {{player.level}}
-        {{player.exp}}
-        {{player.gold}}
-        {{player.power}}
+    <div *ngSwitchCase="'hero'" id="heromenu"><p>Hero : {{player.username}}</p>
+        <p>Level : {{player.level}}</p>
+        <p>Experience : {{player.exp}}</p>
+        <p>Gold : {{player.gold}}</p>
+        <p>Power : {{player.power}}</p>
     </div>
     <div *ngSwitchCase="'team'">
         Team
-        <div *ngIf="flagteam">
+        <div *ngIf="flagteam" class="frnd">
             <div (click)="flagteam=!flagteam">X</div>
-            {{actualfriend.name}}
+            <div>{{actualfriend.name}}</div>
+            <button disabled *ngIf="!canbuy">{{actualfriend.cost}}</button>
+            <button *ngIf="canbuy" (click)="levelUpFriend(actualfriend)">{{actualfriend.cost}}</button>
         </div>
-        <div *ngFor="let friend of myfriends" class="frnd" (click)="showFriend(friend.id)">
+        <div *ngFor="let friend of myfriends" class="frnd buy" (click)="showFriend(friend.id)">
             {{friend.id}}
             <p *ngIf="friend.name">Name : {{friend.name}}</p>
             <p *ngIf="friend.cost">Cost : {{friend.cost}}</p>
             <p *ngIf="friend.power">Power : {{friend.power}}</p>
             <p *ngIf="friend.level">Level : {{friend.level}}</p>
         </div> 
-        <div *ngFor="let friend of friends" class="frnd" (click)="showFriend(friend.id)">
+        <div *ngFor="let friend of unbuyfriend" class="frnd" (click)="showFriend(friend.id)">
             <p *ngIf="friend.name">Name : {{friend.name}}</p>
             <p *ngIf="friend.cost">Cost : {{friend.cost}}</p>
             <p *ngIf="friend.power">Power : {{friend.power}}</p>
@@ -27,18 +28,20 @@
     </div>
     <div *ngSwitchCase="'object'">
         Object
-        <div *ngIf="flagobj">
+        <div *ngIf="flagobj" class="obj">
             <div (click)="flagobj=!flagobj">X</div>
-            {{actualobject.name}}
+            <div>{{actualobject.name}}</div>
+            <button disabled *ngIf="!canbuy">{{actualobject.cost}}</button>
+            <button *ngIf="canbuy" (click)="levelUpObject(actualobject)">{{actualobject.cost}}</button>
         </div> 
-        <div *ngFor="let objet of myobjects" class="obj" (click)="showObject(objet.id)">
+        <div *ngFor="let objet of myobjects" class="obj buy" (click)="showObject(objet.id)">
             {{objet.id}}
             <p *ngIf="objet.name">Name : {{objet.name}}</p>
             <p *ngIf="objet.cost">Cost : {{objet.cost}}</p>
             <p *ngIf="objet.power">Power : {{objet.power}}</p>
             <p *ngIf="objet.level">Level : {{objet.level}}</p>
         </div>
-        <div *ngFor="let objet of objects" class="obj" (click)="showObject(objet.id)">
+        <div *ngFor="let objet of unbuyobject" class="obj" (click)="showObject(objet.id)">
             <p *ngIf="objet.name">Name : {{objet.name}}</p>
             <p *ngIf="objet.cost">Cost : {{objet.cost}}</p>
             <p *ngIf="objet.power">Power : {{objet.power}}</p>
